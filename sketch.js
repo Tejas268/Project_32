@@ -9,15 +9,11 @@ var time;
 
 var bg = "sunrise.png";
 
-function preload() {
-    getBackgroundImg();
-    
-}
-
 function setup(){
     var canvas = createCanvas(1200,700);
     engine = Engine.create();
     world = engine.world;
+    getBackgroundImg();
 
 }
 
@@ -49,8 +45,8 @@ async function getBackgroundImg(){
 
     var response = await fetch("http://worldtimeapi.org/api/timezone/Asia/Kolkata");
     var JSON = await response.json();
-    var datetime = await JSON.datetime;
-    var time = datetime.slice(11, 13);
+    var datetime = JSON.datetime;
+    var time = datetime.slice(11,13);
      
     if(time >= 5 && time < 18) {
         bg = "sunrise.png";
